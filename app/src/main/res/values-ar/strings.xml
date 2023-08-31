@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="what_are_you_looking_for">what are you looking for?</string>
+    <string name="collections">Collections</string>
+    <string name="show_more">show more</string>
+    <string name="home">Home</string>
+    <string name="favorite">favorite</string>
+    <string name="coupons">Coupons</string>
+    <string name="more">More</string>
+    <string name="deals">Deals</string>
+</resources>

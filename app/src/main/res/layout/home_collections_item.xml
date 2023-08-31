@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_20sdp"
+    app:cardUseCompatPadding="true"
+    android:outlineSpotShadowColor="@color/mixed_red"
+    android:outlineAmbientShadowColor="@color/black">
+
+    <LinearLayout
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_collection_img"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/tshirts"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/mixed_red"
+            app:civ_border_width="@dimen/_1sdp"/>
+
+
+        <TextView
+            android:id="@+id/home_collection_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/mixed_red"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"
+            android:text="collection name"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

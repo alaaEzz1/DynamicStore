@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1001464660213",
+    "project_id": "store-egypt",
+    "storage_bucket": "store-egypt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001464660213:android:b19ca076c7a661035545bc",
+        "android_client_info": {
+          "package_name": "com.elmohandes.storeegypt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001464660213-tknstpi7ib6b9lg0nghead16bfjirg67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYihgrTQq7nGUY14tJzHv3VtsWAKLfvzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001464660213-tknstpi7ib6b9lg0nghead16bfjirg67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
