@@ -8,4 +8,5 @@
     <string name="coupons">Coupons</string>
     <string name="more">More</string>
     <string name="deals">Deals</string>
+    <string name="logout">Logout</string>
 </resources>
