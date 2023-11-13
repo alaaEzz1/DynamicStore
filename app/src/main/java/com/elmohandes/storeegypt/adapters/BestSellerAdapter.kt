@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.elmohandes.storeegypt.R
+import com.elmohandes.storeegypt.adapters.listeners.HomeProductListener
 import com.elmohandes.storeegypt.databinding.HomeBestSellerItemBinding
 import com.elmohandes.storeegypt.models.ProductModel
 
-class BestSellerAdapter :
+class BestSellerAdapter(private val listener: HomeProductListener) :
     ListAdapter<ProductModel,BestSellerAdapter.BestSellerVH>(BestSellerDiffCallback()) {
 
     class BestSellerVH(itemView: View) : ViewHolder(itemView){
@@ -39,9 +40,13 @@ class BestSellerAdapter :
     override fun onBindViewHolder(holder: BestSellerVH, position: Int) {
         val bestProduct = getItem(position)
         holder.binding.bestSellerName.text = bestProduct.name
-        holder.binding.bestSellerPrice.text = "${bestProduct.price} LE"
+        holder.binding.bestSellerPrice.text = "${bestProduct.price} AED"
         holder.binding.bestSellerRating.text = "(${bestProduct.rate})"
         Glide.with(holder.itemView.context).load(bestProduct.imageUrl[0])
             .into(holder.binding.bestSellerImg)
+
+        holder.itemView.setOnClickListener {
+            listener.onProductClicked(bestProduct)
+        }
     }
 }

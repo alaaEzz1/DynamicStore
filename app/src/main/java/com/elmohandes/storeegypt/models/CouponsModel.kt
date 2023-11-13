@@ -7,6 +7,4 @@ data class CouponsModel(
     val image: String,
     val countries: String,
     val isAvailable: Boolean,
-    val dateFrom: String,
-    val dateTo: String,
 )

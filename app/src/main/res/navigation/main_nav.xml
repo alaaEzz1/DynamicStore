@@ -8,21 +8,24 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.elmohandes.storeegypt.ui.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_dealsFragment"
             app:destination="@id/dealsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/dealsFragment"
         android:name="com.elmohandes.storeegypt.ui.deals.DealsFragment"
-        android:label="fragment_deals"
+        android:label="Deals"
         tools:layout="@layout/fragment_deals" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.elmohandes.storeegypt.ui.authentication.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_home"
@@ -30,10 +33,31 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.elmohandes.storeegypt.ui.authentication.SignUpFragment"
-        android:label="fragment_sign_up"
+        android:label="Sign Up"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.elmohandes.storeegypt.ui.FavouriteFragment"
+        android:label="Favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.elmohandes.storeegypt.ui.MoreFragment"
+        android:label="More"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.elmohandes.storeegypt.ui.deals.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
 </navigation>

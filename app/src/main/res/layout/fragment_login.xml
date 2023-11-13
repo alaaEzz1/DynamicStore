@@ -11,7 +11,7 @@
         android:id="@+id/login_txt_hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello Again!"
+        android:text="Hello you are the best !"
         android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         android:textColor="@color/mixed_red"

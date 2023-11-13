@@ -5,56 +5,84 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.elmohandes.storeegypt.R
+import com.elmohandes.storeegypt.adapters.ProductCollectionsAdapter
+import com.elmohandes.storeegypt.adapters.ProductsAllAdapter
+import com.elmohandes.storeegypt.adapters.listeners.HomeProductListener
+import com.elmohandes.storeegypt.databinding.FragmentHomeBinding
+import com.elmohandes.storeegypt.databinding.FragmentProductBinding
+import com.elmohandes.storeegypt.models.CollectionsModel
+import com.elmohandes.storeegypt.models.ProductModel
+import com.elmohandes.storeegypt.viewmodels.HomeViewModel
+import com.elmohandes.storeegypt.viewmodels.ProductsViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ProductFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+class ProductFragment : Fragment(), HomeProductListener {
+    private lateinit var binding: FragmentProductBinding
+    private lateinit var homeViewModel : HomeViewModel
+    private lateinit var productsViewModel: ProductsViewModel
+    private lateinit var allAdapter: ProductsAllAdapter
+    private lateinit var collectionsAdapter: ProductCollectionsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product, container, false)
+        val view = inflater.inflate(R.layout.fragment_product, container, false)
+
+        binding = FragmentProductBinding.bind(view)
+
+        //adapters
+        collectionsAdapter = ProductCollectionsAdapter()
+        allAdapter = ProductsAllAdapter(this)
+
+        //viewModels
+        homeViewModel = ViewModelProvider(requireActivity())[HomeViewModel::class.java]
+        productsViewModel = ViewModelProvider(requireActivity())[ProductsViewModel::class.java]
+
+        binding.productCollectionRv.apply {
+            adapter = collectionsAdapter
+            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        }
+        getCollectionsFromViewModel()
+
+        binding.productAllProductsRv.apply {
+            adapter = allAdapter
+            layoutManager = GridLayoutManager(requireContext(),2)
+        }
+        getAllProductsFromViewModel()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun getAllProductsFromViewModel() {
+        productsViewModel.products.observe(requireActivity()){
+            allAdapter.submitList(it)
+        }
+        productsViewModel.loadProducts()
+    }
+
+    private fun getCollectionsFromViewModel() {
+        homeViewModel.collections.observe(requireActivity()){
+            collectionsAdapter.submitList(it)
+        }
+        homeViewModel.loadCollections()
+    }
+
+    override fun onProductClicked(productModel: ProductModel) {
+        val bundle = bundleOf(
+            "product_title" to  productModel.name,
+            "product_desc" to  productModel.description,
+            "product_price" to  productModel.price,
+            "product_image" to  ArrayList(productModel.imageUrl),
+            "product_rate" to  productModel.rate,
+        )
+        Navigation.findNavController(requireView()).navigate(R.id.productDetailsFragment,bundle)
     }
 }

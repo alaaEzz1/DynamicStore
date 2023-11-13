@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elmohandes.storeegypt.R
@@ -15,15 +18,18 @@ import com.elmohandes.storeegypt.adapters.BestSellerAdapter
 import com.elmohandes.storeegypt.adapters.HomeCollectionsAdapter
 import com.elmohandes.storeegypt.adapters.HomeCouponAdapter
 import com.elmohandes.storeegypt.adapters.HomeSliderAdapter
+import com.elmohandes.storeegypt.adapters.listeners.HomeProductListener
 import com.elmohandes.storeegypt.databinding.FragmentHomeBinding
 import com.elmohandes.storeegypt.models.HomeSliderModel
 import com.elmohandes.storeegypt.models.ProductModel
 import com.elmohandes.storeegypt.utils.AdMobAdsManager
 import com.elmohandes.storeegypt.viewmodels.HomeViewModel
+import com.google.firebase.auth.FirebaseAuth
 import java.util.*
+import kotlin.collections.ArrayList
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeProductListener {
     // TODO: Rename and change types of parameters
     /*
     1- linear search and logo == true -> but still app has no logo
@@ -85,7 +91,7 @@ class HomeFragment : Fragment() {
         //adapters
         sliderAdapter = HomeSliderAdapter(images)
         collectionsAdapter = HomeCollectionsAdapter()
-        bestSellerAdapter = BestSellerAdapter()
+        bestSellerAdapter = BestSellerAdapter(this)
         couponAdapter = HomeCouponAdapter()
 
         //inflate slider
@@ -161,5 +167,16 @@ class HomeFragment : Fragment() {
             }
 
         },500,5000)
+    }
+
+    override fun onProductClicked(productModel: ProductModel) {
+        val bundle = bundleOf(
+            "home_product_title" to  productModel.name,
+            "home_product_desc" to  productModel.description,
+            "home_product_price" to  productModel.price,
+            "home_product_image" to  ArrayList(productModel.imageUrl),
+            "home_product_rate" to  productModel.rate,
+        )
+        Navigation.findNavController(requireView()).navigate(R.id.productDetailsFragment,bundle)
     }
 }

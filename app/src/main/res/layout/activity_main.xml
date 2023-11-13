@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -49,6 +48,7 @@
             app:fabAlignmentMode="center"
             app:contentInsetStart="0dp"
             app:contentInsetEnd="0dp"
+            android:background="@color/grey"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout

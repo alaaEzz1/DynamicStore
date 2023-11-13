@@ -1,6 +1,9 @@
 package com.elmohandes.storeegypt.ui.authentication
 
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,6 +39,13 @@ class LoginFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        if (auth.currentUser != null){
+            //TODO: Clear the back stack up to the loginFragment
+            val navController = findNavController()
+            navController.popBackStack(R.id.loginFragment, true)
+            navController.navigate(R.id.homeFragment)
+        }
+
         binding.loginBtnRegister.setOnClickListener {
             val navController = findNavController()
             navController.navigate(R.id.signUpFragment)
@@ -45,6 +55,17 @@ class LoginFragment : Fragment() {
             loginToMyEmail()
             loading.dismissDialog()
 
+        }
+
+        binding.loginTxtHome.setOnClickListener {
+            val dialog = CustomProgressDialog(requireActivity())
+            dialog.startLoading()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                Handler.createAsync(Looper.myLooper()!!).postDelayed({
+                    dialog.dismissDialog()
+                    findNavController().navigate(R.id.homeFragment)
+                },1000)
+            }
         }
 
         return view
@@ -89,16 +110,6 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Network Error",
                     Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (auth.currentUser!!.uid.isNotEmpty()){
-            //TODO: Clear the back stack up to the loginFragment
-            val navController = findNavController()
-            navController.popBackStack(R.id.loginFragment, true)
-            navController.navigate(R.id.homeFragment)
         }
     }
 
