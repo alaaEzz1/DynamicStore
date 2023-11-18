@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_loginFragment_to_moreFragment"
             app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -60,4 +63,9 @@
         android:name="com.elmohandes.storeegypt.ui.deals.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.elmohandes.storeegypt.ui.admin.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
 </navigation>

@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    android:padding="@dimen/_8sdp"
+    android:gravity="center"
     tools:context=".ui.admin.AdminFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center_horizontal"
+       android:orientation="horizontal">
 
-</FrameLayout>
+       <androidx.cardview.widget.CardView
+           android:id="@+id/admin_add_category"
+           android:layout_width="@dimen/_120sdp"
+           android:layout_height="wrap_content"
+           app:cardUseCompatPadding="true"
+           app:cardCornerRadius="@dimen/_10sdp"
+           android:outlineSpotShadowColor="@color/mixed_red"
+           android:outlineAmbientShadowColor="@color/black">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="@dimen/_8sdp"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:layout_width="@dimen/_80sdp"
+                   android:layout_height="@dimen/_80sdp"
+                   android:layout_gravity="center_horizontal"
+                   android:src="@drawable/ic_category"
+                   app:tint="@color/mixed_red" />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Add Category"
+                   android:textColor="@color/mixed_red"
+                   android:textSize="@dimen/_14ssp"
+                   android:textStyle="bold"
+                   android:gravity="center"/>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+       <androidx.cardview.widget.CardView
+           android:id="@+id/admin_add_product"
+           android:layout_width="@dimen/_120sdp"
+           android:layout_height="wrap_content"
+           app:cardUseCompatPadding="true"
+           app:cardCornerRadius="@dimen/_10sdp"
+           android:outlineSpotShadowColor="@color/mixed_red"
+           android:outlineAmbientShadowColor="@color/black">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="@dimen/_8sdp"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:layout_width="@dimen/_80sdp"
+                   android:layout_height="@dimen/_80sdp"
+                   android:layout_gravity="center_horizontal"
+                   android:src="@drawable/ic_products"
+                   app:tint="@color/mixed_red" />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Add Product"
+                   android:textColor="@color/mixed_red"
+                   android:textSize="@dimen/_14ssp"
+                   android:textStyle="bold"
+                   android:gravity="center"/>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+   </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_add_show_users"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_10sdp"
+            android:outlineSpotShadowColor="@color/mixed_red"
+            android:outlineAmbientShadowColor="@color/black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_show_users"
+                    app:tint="@color/mixed_red" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show Users"
+                    android:textColor="@color/mixed_red"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_add_best_seller"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_10sdp"
+            android:outlineSpotShadowColor="@color/mixed_red"
+            android:outlineAmbientShadowColor="@color/black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_products"
+                    app:tint="@color/mixed_red" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Best Seller"
+                    android:textColor="@color/mixed_red"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

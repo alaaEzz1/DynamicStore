@@ -41,9 +41,16 @@ class LoginFragment : Fragment() {
 
         if (auth.currentUser != null){
             //TODO: Clear the back stack up to the loginFragment
-            val navController = findNavController()
-            navController.popBackStack(R.id.loginFragment, true)
-            navController.navigate(R.id.homeFragment)
+            if (auth.currentUser!!.email == "admin@gmail.com"){
+                val navController = findNavController()
+                navController.popBackStack(R.id.loginFragment, true)
+                navController.navigate(R.id.adminFragment)
+            }else{
+                val navController = findNavController()
+                navController.popBackStack(R.id.loginFragment, true)
+                navController.navigate(R.id.homeFragment)
+            }
+
         }
 
         binding.loginBtnRegister.setOnClickListener {
@@ -89,9 +96,16 @@ class LoginFragment : Fragment() {
                     .addOnCompleteListener{
                         if (it.isSuccessful){
                             //TODO: Clear the back stack up to the loginFragment
-                            val navController = findNavController()
-                            navController.popBackStack(R.id.loginFragment, true)
-                            navController.navigate(R.id.homeFragment)
+                            if (auth.currentUser!!.email == "admin@gmail.com"){
+                                val navController = findNavController()
+                                navController.popBackStack(R.id.loginFragment, true)
+                                navController.navigate(R.id.adminFragment)
+                            }else{
+                                val navController = findNavController()
+                                navController.popBackStack(R.id.loginFragment, true)
+                                navController.navigate(R.id.homeFragment)
+                            }
+
                         }else{
                             Toast.makeText(requireContext(),
                                 "Email or Password is wrong try again",
