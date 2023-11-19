@@ -57,7 +57,11 @@
         android:id="@+id/moreFragment"
         android:name="com.elmohandes.storeegypt.ui.MoreFragment"
         android:label="More"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.elmohandes.storeegypt.ui.deals.ProductDetailsFragment"
@@ -68,4 +72,9 @@
         android:name="com.elmohandes.storeegypt.ui.admin.AdminFragment"
         android:label="fragment_admin"
         tools:layout="@layout/fragment_admin" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.elmohandes.storeegypt.ui.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

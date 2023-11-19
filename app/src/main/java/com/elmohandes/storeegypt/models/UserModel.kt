@@ -7,5 +7,6 @@ data class UserModel(
     val age:Int,
     val address: String,
     val mobilePhone: String,
+    val userImage: String,
     val password: String,
 )

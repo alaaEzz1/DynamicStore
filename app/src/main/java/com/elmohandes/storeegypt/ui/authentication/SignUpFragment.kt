@@ -94,7 +94,7 @@ class SignUpFragment : Fragment() {
                             val id = auth.currentUser!!.uid
                             val user = UserModel(
                                 id, fullName, email, age.toInt(),
-                                address, phone, password
+                                address, phone,"", password
                             )
                             storeInDatabase(user,id)
                             loading.dismissDialog()
