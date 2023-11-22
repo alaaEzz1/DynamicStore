@@ -46,7 +46,7 @@ class ProductDetailsFragment : Fragment() {
 
     private fun getHomeData(homeProductTitle: String?, homeProductDesc: String?, homeProductPrice: Double?,
                             homeProductRate: String?, homeProductImage: ArrayList<String>?) {
-        Toast.makeText(context, "${homeProductImage?.get(0)}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "${homeProductImage?.get(0)}", Toast.LENGTH_SHORT).show()
 
         if (homeProductPrice != null){
             binding.productDetailsPrice.text = "$homeProductPrice AED"

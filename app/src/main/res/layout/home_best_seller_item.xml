@@ -30,6 +30,8 @@
             android:textSize="@dimen/_13ssp"
             android:textColor="@color/mixed_red"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center"
             android:layout_marginTop="@dimen/_4sdp"/>
 

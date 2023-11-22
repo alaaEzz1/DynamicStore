@@ -1,5 +1,6 @@
 package com.elmohandes.storeegypt.repository
 
+import com.elmohandes.storeegypt.database.RetrieveProductsFromDB
 import com.elmohandes.storeegypt.models.ProductModel
 
 class ProductsRepo {
@@ -24,13 +25,15 @@ class ProductsRepo {
             39.99, 4.7, true)
     )
 
-    fun getProducts() : List<ProductModel>{
-        return products
+    suspend fun getProducts() : List<ProductModel>{
+        val productsList = RetrieveProductsFromDB()
+        return productsList.getProducts()
     }
 
     //filter is best seller from products
-    fun getBestSellerProducts() : List<ProductModel>{
-        return products.filter { it.isBestSeller }
+    suspend fun getBestSellerProducts() : List<ProductModel>{
+        val productsList = RetrieveProductsFromDB()
+        return productsList.getProducts().filter { it.isBestSeller }
     }
 
 }

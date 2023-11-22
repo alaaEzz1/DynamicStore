@@ -174,7 +174,7 @@ class HomeFragment : Fragment(), HomeProductListener {
             "home_product_title" to  productModel.name,
             "home_product_desc" to  productModel.description,
             "home_product_price" to  productModel.price,
-            "home_product_image" to  ArrayList(productModel.imageUrl),
+            "home_product_image" to  ArrayList<String>(productModel.imageUrl),
             "home_product_rate" to  productModel.rate,
         )
         Navigation.findNavController(requireView()).navigate(R.id.productDetailsFragment,bundle)

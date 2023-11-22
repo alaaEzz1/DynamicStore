@@ -1,12 +1,16 @@
 package com.elmohandes.storeegypt.repository
 
+import com.elmohandes.storeegypt.database.RetrieveCollectionsFromDB
 import com.elmohandes.storeegypt.models.CollectionsModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 class CollectionsRepo {
     //firebase and room collection implementation
     //also we can add caching and other topics here
+
     suspend fun getCollections() : List<CollectionsModel>{
-        return getNewCollections()
+        val retrieveCollectionsFromDB = RetrieveCollectionsFromDB()
+        return retrieveCollectionsFromDB.getCollections()
     }
 
     private fun getNewCollections(): List<CollectionsModel> {

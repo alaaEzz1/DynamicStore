@@ -1,6 +1,9 @@
 package com.elmohandes.storeegypt.ui
 
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.elmohandes.storeegypt.R
 import com.elmohandes.storeegypt.databinding.FragmentMoreBinding
 import com.elmohandes.storeegypt.models.UserModel
+import com.elmohandes.storeegypt.utils.CustomProgressDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -39,9 +43,29 @@ class MoreFragment : Fragment() {
         return view
     }
 
+    private fun logoutFromDatabase() {
+        val dialog = CustomProgressDialog(requireActivity())
+        val auth = FirebaseAuth.getInstance()
+        dialog.startLoading()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Handler.createAsync(Looper.myLooper()!!).postDelayed({
+                dialog.dismissDialog()
+            }, 1000)
+        }else{
+            dialog.dismissDialog()
+        }
+        auth.signOut()
+        Navigation.findNavController(requireView()).popBackStack(R.id.moreFragment, true)
+         Navigation.findNavController(requireView()).navigate(R.id.loginFragment)
+    }
+
     private fun setupActions() {
         binding.moreProfileSettings.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.editProfileFragment)
+        }
+
+        binding.moreProfileImg.setOnClickListener {
+            logoutFromDatabase()
         }
     }
 
