@@ -29,14 +29,9 @@ class RetrieveProductsFromDB {
                 val price = it.data.getValue("price").toString().toDouble()
                 val rate = it.data.getValue("rate").toString().toDouble()
                 val isBestSeller = it.data.getValue("bestSeller").toString().toBoolean()
-
                 // Check for null and handle it accordingly
                 if (imageUrl != null) {
                     // Now you can use imageUrlList, which is a List<String>
-                    images.forEach { imageUrls ->
-                        // Do something with each imageUrl
-                    }
-
                     // If you need to add all URLs to your list
                     images.forEach { imageUrls ->
                         images.add(imageUrls)

@@ -1,8 +1,11 @@
 package com.elmohandes.storeegypt.ui.deals
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,21 +34,25 @@ class ProductDetailsFragment : Fragment() {
         val homeProductDesc = arguments?.getString("home_product_desc")
         val homeProductPrice = arguments?.getDouble("home_product_price")
         val homeProductImage = arguments?.getStringArrayList("home_product_image")
-        val homeProductRate = arguments?.getString("home_product_rate")
+        val homeProductRate = arguments?.getDouble("home_product_rate").toString()
+        val homeProductLink = arguments?.getString("home_product_link")
         val productTitle = arguments?.getString("product_title")
         val productDesc = arguments?.getString("product_desc")
         val productPrice = arguments?.getDouble("product_price")
         val productImage = arguments?.getStringArrayList("product_image")
-        val productRate = arguments?.getString("product_rate")
+        val productRate = arguments?.getDouble("product_rate").toString()
+        val productLink = arguments?.getString("product_link")
 
-        getProductData(productTitle,productDesc,productPrice,productRate,productImage)
-        getHomeData(homeProductTitle,homeProductDesc,homeProductPrice,homeProductRate,homeProductImage)
+        getProductData(productTitle,productDesc,productPrice,productRate,productImage,productLink)
+        getHomeData(homeProductTitle,homeProductDesc,homeProductPrice,homeProductRate,homeProductImage,homeProductLink)
 
         return view
     }
 
-    private fun getHomeData(homeProductTitle: String?, homeProductDesc: String?, homeProductPrice: Double?,
-                            homeProductRate: String?, homeProductImage: ArrayList<String>?) {
+    private fun getHomeData(
+        homeProductTitle: String?, homeProductDesc: String?, homeProductPrice: Double?,
+        homeProductRate: String?, homeProductImage: ArrayList<String>?, homeProductLink: String?
+    ) {
         //Toast.makeText(context, "${homeProductImage?.get(0)}", Toast.LENGTH_SHORT).show()
 
         if (homeProductPrice != null){
@@ -56,6 +63,11 @@ class ProductDetailsFragment : Fragment() {
         }
         if (homeProductDesc!= null){
             binding.productDetailsDesc.text = homeProductDesc
+        }
+        if (homeProductLink!= null){
+            binding.productDetailsAddToCart.setOnClickListener {
+                openLinkInBrowser(homeProductLink)
+            }
         }
         if (homeProductImage != null){
             sliderAdapter = ProductSliderAdapter(homeProductImage)
@@ -83,7 +95,8 @@ class ProductDetailsFragment : Fragment() {
 
     private fun getProductData(
         productTitle: String?, productDesc: String?, productPrice: Double?,
-        productRate: String?, productImage: ArrayList<String>?) {
+        productRate: String?, productImage: ArrayList<String>?, productLink: String?
+    ) {
 
         if (productDesc!= null){
             binding.productDetailsDesc.text = productDesc
@@ -94,10 +107,45 @@ class ProductDetailsFragment : Fragment() {
         if (productPrice!= null){
             binding.productDetailsPrice.text = "$productPrice AED"
         }
+
+        if (productLink != null){
+            binding.productDetailsAddToCart.setOnClickListener {
+                openLinkInBrowser(productLink)
+            }
+        }
+
         if (productImage != null){
             sliderAdapter = ProductSliderAdapter(productImage)
             binding.productDetailsPager.adapter = sliderAdapter
             setupSliderTimer()
         }
     }
+
+    // Function to open a link in the browser
+    private fun openLinkInBrowser(link: String) {
+        // Parse the link into a Uri
+        val uri = Uri.parse(link)
+
+        // Create an intent with the ACTION_VIEW action
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+
+        // Check if there are activities that can handle this intent
+        if (intent.resolveActivity(requireActivity().packageManager) != null) {
+            // Start the intent, and the user will be prompted to choose a browser
+            try {
+                Log.d("website-link",link)
+                val chooser = Intent.createChooser(intent, "Open with...")
+                requireActivity().startActivity(chooser)
+            }catch (ex: Exception){
+                Log.d("website-url", ex.message.toString())
+            }
+        } else {
+            // Handle the case where there is no browser installed
+            Toast.makeText(
+                requireContext(), "No browser installed. Please install a browser to open the link.",
+                Toast.LENGTH_LONG).show()
+            // or use a WebView within your app
+        }
+    }
+
 }

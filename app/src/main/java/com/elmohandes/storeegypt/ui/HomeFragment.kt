@@ -68,19 +68,19 @@ class HomeFragment : Fragment(), HomeProductListener {
         images = listOf(
             HomeSliderModel(
                 1,
-                "https://i.pinimg.com/564x/fc/bd/d5/fcbdd5f7ebfe2b66e0cc55c1d55f99f3.jpg",
+                "https://i.pinimg.com/736x/9f/3e/2d/9f3e2d21e29f7ddf0a95d30a74eaa6e4.jpg",
             ),
             HomeSliderModel(
                 2,
-                "https://i.pinimg.com/564x/94/98/20/9498203b828a2cdf2cc718a6533e3374.jpg",
+                "https://i.pinimg.com/736x/6a/94/9c/6a949c7dc29c40bb6b0e5de7769293cb.jpg",
             ),
             HomeSliderModel(
                 3,
-                "https://i.pinimg.com/736x/b1/d5/ab/b1d5abdec83cab1898ff74ce1480551e.jpg",
+                "https://i.pinimg.com/736x/33/fe/b1/33feb1632daaf5764b2fbdb55924c15e.jpg",
             ),
             HomeSliderModel(
                 4,
-                "https://i.pinimg.com/564x/40/c0/15/40c0155583f27cc037b8ca6e55e39783.jpg",
+                "https://i.pinimg.com/736x/5f/87/c4/5f87c4590b823378984c677c505dea8d.jpg",
             ),
             HomeSliderModel(
                 5,
@@ -176,6 +176,7 @@ class HomeFragment : Fragment(), HomeProductListener {
             "home_product_price" to  productModel.price,
             "home_product_image" to  ArrayList<String>(productModel.imageUrl),
             "home_product_rate" to  productModel.rate,
+            "home_product_link" to  productModel.productLink,
         )
         Navigation.findNavController(requireView()).navigate(R.id.productDetailsFragment,bundle)
     }

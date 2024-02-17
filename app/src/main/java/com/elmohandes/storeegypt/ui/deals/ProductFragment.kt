@@ -82,6 +82,7 @@ class ProductFragment : Fragment(), HomeProductListener {
             "product_price" to  productModel.price,
             "product_image" to  ArrayList(productModel.imageUrl),
             "product_rate" to  productModel.rate,
+            "product_link" to  productModel.productLink,
         )
         Navigation.findNavController(requireView()).navigate(R.id.productDetailsFragment,bundle)
     }

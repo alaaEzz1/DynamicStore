@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_shape"
-                android:text="Add to Cart"
+                android:text="Buy the product"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/_15ssp"
